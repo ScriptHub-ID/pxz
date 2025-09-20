@@ -2,6 +2,8 @@ repeat wait() until game:IsLoaded()
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local Tween = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
 local LP = Players.LocalPlayer
 local PG = LP:WaitForChild("PlayerGui")
 
@@ -108,17 +110,55 @@ end
 
 -- GUI Setup
 local gui2 = Instance.new("ScreenGui", PG)
-gui2.Name = "KuniEggGUI"
+gui2.Name = "PxzEggGUI"
 
 local f = Instance.new("Frame", gui2)
 f.Size = UDim2.new(0, 260, 0, 180)
 f.Position = UDim2.new(0.5, -130, 0.5, -90)
 f.BackgroundColor3 = BROWN_BG
-f.Active = true
-f.Draggable = true
 Instance.new("UICorner", f).CornerRadius = UDim.new(0, 10)
 Instance.new("UIStroke", f).Color = BROWN_BORDER
 Instance.new("UIStroke", f).Thickness = 2
+
+-- Custom Dragging System
+local dragging = false
+local dragInput, dragStart, startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    f.Position = UDim2.new(
+        startPos.X.Scale,
+        startPos.X.Offset + delta.X,
+        startPos.Y.Scale,
+        startPos.Y.Offset + delta.Y
+    )
+end
+
+f.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = f.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+f.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
 
 -- Tile background
 local tile = Instance.new("ImageLabel", f)
@@ -204,9 +244,9 @@ end
 makeBtn(f, "Manual Randomizer", 80, BUTTON_GREEN, BUTTON_GREEN_HOVER, function()
     if not canClick then return end
     canClick = false
-    animateStatus(status, "🔄 Randomizing", 2)
+    animateStatus(status, "🔄 Randomizing", 1)
     randomize(false,false)
-    wait(2)
+    wait(1)
     status.Text = ""
     canClick = true
 end)
@@ -214,11 +254,12 @@ end)
 makeBtn(f, "Auto Randomizer", 115, BUTTON_BLUE, BUTTON_BLUE_HOVER, function()
     if not canClick then return end
     canClick = false
-    animateStatus(status, "🔄 Randomizing", 40)
+    animateStatus(status, "🔄 Randomizing", 1)
     local start = tick()
-    while tick() - start < 40 do randomize(false,true); wait(2) end
+    while tick() - start < 40 do randomize(false,true); wait(1) end
     local rares = randomize(true,false)
-    if #rares > 0 then status.Text = "✅ Found:\n"..table.concat(rares,"\n") else status.Text = "✅ Found Rare Pet" end
+    if #rares > 0 then status.Text = "✅ Found:\n"..table.concat(rares,"\n")
+    else status.Text = "✅ Found Rare Pet" end
     wait(3); status.Text = ""
     canClick = true
 end)
@@ -228,7 +269,7 @@ local footer = Instance.new("TextLabel", f)
 footer.Size = UDim2.new(1, -10, 0, 16)
 footer.Position = UDim2.new(0, 5, 1, -18)
 footer.BackgroundTransparency = 1
-footer.Text = "Made by Kuni"
+footer.Text = "Made by Pxz"
 footer.Font = FONT
 footer.TextColor3 = Color3.new(1, 1, 1)
 footer.TextStrokeTransparency = 0.5
