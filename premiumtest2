@@ -32,13 +32,14 @@ local eggToPets = {
     ["Bug Egg"] = {"Snail", "Giant Ant", "Caterpillar", "Praying Mantis", "Dragon Fly"},
     ["Night Egg"] = {"Hedgehog", "Mole", "Frog", "Echo Frog", "Night Owl", "Raccoon"},
     ["Bee Egg"] = {"Bee", "Honey Bee", "Bear Bee", "Petal Bee", "Queen Bee"},
-    ["Anti Bee Egg"] = {"Wasp", "Tarantula Hawk", "Moth", "Butterfly", "Disco Bee"},
+    ["Anti Bee Egg"] = {"Wasp", "Moth", "Butterfly", "Disco Bee"},
     ["Common Summer Egg"] = {"Starfish", "Seafull", "Crab"},
     ["Rare Summer Egg"] = {"Flamingo", "Toucan", "Sea Turtle", "Orangutan", "Seal"},
-    ["Paradise Egg"] = {"Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus"},
+    ["Paradise Egg"] = {"Ostrich", "Peacock", "Mimic Octopus"},
     ["Premium Night Egg"] = {"Hedgehog", "Mole", "Frog", "Echo Frog"},
     ["Primal Egg"] = {"Parasaurolophus", "Iguanodon", "Pachycephalosaurus", "Dilophosaurus", "Ankylosaurus", "Spinosaurus"},
-    ["Dinosaur Egg"] = {"T-Rex", "Brontosaurus", "Triceratops", "Velociraptor"},
+    ["Dinosaur Egg"] = {"T-Rex", "Brontosaurus", "Triceratops"},
+    ["Zen Egg"] = { "Kappa", "Nihonzaru", "Tanuki", "Kitsune" },
 }
 
 -- ESP System
