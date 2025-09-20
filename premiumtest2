@@ -38,7 +38,7 @@ local eggToPets = {
     ["Paradise Egg"] = {"Ostrich", "Peacock", "Mimic Octopus"},
     ["Premium Night Egg"] = {"Hedgehog", "Mole", "Frog", "Echo Frog"},
     ["Primal Egg"] = {"Parasaurolophus", "Iguanodon", "Pachycephalosaurus", "Dilophosaurus", "Ankylosaurus", "Spinosaurus"},
-    ["Dinosaur Egg"] = {"T-Rex", "Brontosaurus", "Triceratops"},
+    ["Dinosaur Egg"] = {"Brontosaurus", "Triceratops", "T-Rex"},
     ["Zen Egg"] = { "Kappa", "Nihonzaru", "Tanuki", "Kitsune" },
 }
 
